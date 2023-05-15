@@ -1,0 +1,76 @@
+**Manual for Myshell**
+This document is to serve as a simple guide to users for using Myshell - an interactive shell made by Malavika Shanker, student ID 20102232 as part of her CA216 project.
+The shell contains various commands that the student has implemented which will be explained thoroughly by this document.
+
+**Calling the Shell**
+If you type in the file name where you compiled to without any arguments, then it will call the shell and give
+you a prompt for input.
+
+**Section 1 Commands**
+**Internal**
+``cd``: cd - also known as change directory; its purposes are multifold. If no argument is provided by the user, it reports the current path. For example``cd ca216`` will change into the 216 directory and the PWD (or prompt in simpler words) will have that directory appended as it will be the current path. If an incorrect directory is provided an error message is displayed.
+``clr``: clr - also known as clear screen; when called by the user it prints a set of characters ``"\033[2J\033[1;1H"`` which clears up the terminal.
+``dir``: dir - also known as directory; it will output all the files, directories etc of the directory. 
+For example ``dir ca216`` will output all the files and directories inside it. If incorrect directory is provided, it displays an error
+``environ``: environ - also known as environment; it will output all the environment variables. In simple words, It is used to pass on values from shell and the programs outside it. Once a user calls it, it will print out all the environ variables to output.
+``echo``: echo - will output what the user types in after the command in a new line.
+``help``: help - will output this usermanual, one full page at a time to the terminal. To view the next line just press ``enter``.
+``pause``: pause - will pause or stop the terminal until ``enter`` key is pressed.
+``quit``: quit - will quit the shell.
+
+**External**
+All other non built-in commands are also executable as long as they are valid commands like ls, sleep etc.
+
+**IO - Redirection**
+``<``: also called the input redirection operator, it will take inputs from a file that is specified after it. For example - program < input, will pass on inputs contents into program where it will be executed using them. ``cat < file.txt`` will output what ever is in the file.txt.
+``>``: also called output redirection operator, with output the left side file, command into the right side file. It will overwrite whatever is in it. 
+``>>``: also called output append redirection operator will do the same as ``>`` just that it will append to pre existing content than overwriting it.
+*How does IO - Redirection work?*
+In simple terms it just replaces the stdin and stdou that it usually gets from the keyboard and the screen respectively with files and/ programs.
+
+**Section 2 Modes**
+**Batch Mode**
+If after running the makefile you save it under myshell, then running ``./myshell filename`` will take commands from the file, run it and display the output into the terminal.
+
+
+**Section 3 Concepts**
+**Environment Concepts**
+Environment plays an extremely crucial role in how a shell operates as well as its behavious with other programs.
+Think of it as a dictionary where there are key value pairs - that is ``KEY=VALUE``. ``NAME=LAPTOP`` OR THE ``PWD=/mnt/c/Users/malav/Downloads/2023-ca216-myshell-main/2023-ca216-myshell-main/src`` are two examples of this.
+These variables exist as soon as a shell is run and plays a key role in its behaviour with other programs. For example the shell will look into the ``PATH`` variable to see where the files are to be executed. 
+To understand its importance - if you need to run ``dir``, it will look into ``PATH`` to run it as it needs to see ``dir`` executable file in ``PATH``. If ``PATH`` is not properly set an error might be displayed.
+If you are curious about the variables then you can use a `$` followed by the name, that is `$name` to see the value.
+*sneak peak into internal constrution*
+``setEnv()``: This will set the env of the Shell and the Parent to be the the current working directory + a /myshell at the end.
+Benefit of doing so is that it will help it know where the myshell executable file is even if we decide to change directories.
+
+
+
+
+**Process Concept**
+A process is a simple instance of a program that is currently being run. The O.S tries to efficiently manage its resources between multiple processes.
+``ps`` if this command is run you can see the details about the current processes being run for reference.
+*Foreground processes*
+They are the processes that the user is currently using - to explain clearly with an example, if you run a text editor - say nano in the foreground, the terminal will be occupied as it is being run in the foreground.
+That is, active user inputs are required/ welcome.
+*Background processes*
+They on the other hand run in the background - that is user doesnt have to interact with them to run in the background. The terminal is available even if it has not attained completion.
+The shell can support this if given input of format ``command &``.
+The ``&`` is essential to let it know that ``command`` should be run in the background and not in the foreground.
+
+**References**
+Griffiths, D. and Griffiths, D. (2012) Head first C: A brain-friendly guide. Beijing: O'Reilly. 
+Perry, J.W. (1998) Advanced C programming by example. Boston, MA: PWS Publishing. 
+Understanding unix/linux programming: A guide to theory and practice, 1st edition (no date) Understanding UNIX/LINUX Programming: A Guide to Theory and Practice. Available at: https://www.pearson.com/en-us/subject-catalog/p/understanding-unixlinux-programming-a-guide-to-theory-and-practice/P200000003280/9780130083968 (Accessed: March 19, 2023).
+
+
+Operating system concepts - 10th edition. Available at: https://codex.cs.yale.edu/avi/os-book/OS10/index.html (Accessed: March 19, 2023). 
+
+// Malavika Shanker, 20102232 - Operating Systems Project 1 * ca216/myshell
+// I understand that the University regards breaches of academic integrity and plagiarism as grave and serious.
+// I have read and understood the DCU Academic Integrity and Plagiarism Policy. I accept the penalties that may be imposed should I engage in practice or practices that breach this policy.
+// I have identified and included the source of all facts, ideas, opinions and viewpoints of others in the assignment references. Direct quotations, paraphrasing, discussion of ideas from books, journal articles, internet sources, module text, or any other source whatsoever are acknowledged and the sources cited are identified in the assignment references.
+// I declare that this material, which I now submit for assessment, is entirely my own work and has not been taken from the work of others save and to the extent that such work has been cited and acknowledged within the text of my work.
+// I have used the DCU library referencing guidelines (available at https://www4.dcu.ie/library/classes_and_tutorials/citingreferencing.shtml and/or the appropriate referencing system recommended in the assignment guidelines and/or programme documentation.
+// By signing this form or by submitting material online I confirm that this assignment, or any part of it, has not been previously submitted by me or any other person for assessment on this or any other course of study.
+
